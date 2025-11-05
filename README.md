@@ -16,7 +16,8 @@ A simple yet complete React Memory Game built using modern React concepts:
   
 
 
-  **Task List**
+**Task List**
+
 **1. Game Board Enhancements (Card visuals + flipping)**
   - Card Flipping use the package react-card-flip
   - Create Card.jsx component
