@@ -34,7 +34,7 @@ A simple yet complete React Memory Game built using modern React concepts:
   - Update flips count
   - Permanent color for matched cards
 
-**3. Global Contexts & Best Score**
+**3. Global Contexts & Best Score**  [optional - only if we have time]
   - Create GameContext.js
   - Integrate Context in components
   - Persist best score in localStorage
