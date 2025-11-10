@@ -12,7 +12,7 @@ const Card = ({ id, isFlipped, onClick, image }) => {
       {/* Back of the card (shown when flipped) */}
       <div 
         className="backCard"
-        onClick={() => onClick(id)}
+        // onClick={() => onClick(id)}
       >
         <img 
           src={image} 
