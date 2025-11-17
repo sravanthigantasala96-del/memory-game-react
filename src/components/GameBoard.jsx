@@ -12,6 +12,8 @@ import penguin from "../assets/cardImages/penguin.png";
 import phoenix from "../assets/cardImages/phoenix.png";
 import toucan from "../assets/cardImages/toucan.png";
 import unicorn from "../assets/cardImages/unicorn.png";
+import ScoreBoard from "./ScoreBoard";
+import useBestScore from "./useBestScore";
 
 const GameBoard = () => {
   const level = new URLSearchParams(window.location.search).get("level");
@@ -34,16 +36,14 @@ const GameBoard = () => {
     // 3x3 = 6 pairs = 6 unique images
     // 4x4 = 8 pairs = 8 unique images
     // 5x4 = 10 pairs = 10 unique images
-    
+
     console.log("Level Selected ::: " + level);
     let selectedImages = [];
-    if(level === "easy") {
-      selectedImages = cardImages.slice(0,6);
-    }
-    else if(level === "medium"){
-      selectedImages = cardImages.slice(0,8);
-    }
-    else if(level === "hard"){
+    if (level === "easy") {
+      selectedImages = cardImages.slice(0, 6);
+    } else if (level === "medium") {
+      selectedImages = cardImages.slice(0, 8);
+    } else if (level === "hard") {
       selectedImages = cardImages;
     }
     const pairs = [...selectedImages, ...selectedImages];
@@ -62,6 +62,7 @@ const GameBoard = () => {
   const [freezeBoard, setFreezeBoard] = useState(false);
   const [matchedCards, setMatchedCards] = useState([]);
   const [totalFlips, setTotalFlips] = useState(0);
+  const [bestScore, setBestScore] = useBestScore({ level });
 
   useEffect(() => {
     setCards(createBoard());
@@ -108,9 +109,14 @@ const GameBoard = () => {
   }, [flippedCards]);
 
   const resetCards = () => {
+    const _totalFlips = totalFlips + 1;
     setFlippedCards([]);
     setFreezeBoard(false);
-    setTotalFlips((prev) => prev + 1);
+    setTotalFlips(_totalFlips);
+    const flippedCardsCount = cards.filter((card) => card.isFlipped).length;
+    if (cards.length == flippedCardsCount) {
+      setBestScore(_totalFlips);
+    }
   };
 
   const handleCardClick = (cardId) => {
@@ -130,6 +136,8 @@ const GameBoard = () => {
   };
 
   return (
+    <div>
+    <ScoreBoard totalMoves={totalFlips} bestScore={bestScore} />
     <div className={"Cards-"+level}>
       {cards.map((card) => (
         <Card
@@ -147,6 +155,7 @@ const GameBoard = () => {
         />
       ))}
     </div>
+</div>
   );
 };
 
