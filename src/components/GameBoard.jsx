@@ -14,6 +14,7 @@ import toucan from "../assets/cardImages/toucan.png";
 import unicorn from "../assets/cardImages/unicorn.png";
 import ScoreBoard from "./ScoreBoard";
 import useBestScore from "./useBestScore";
+import EndGameMessageModal from "./EndGameMessageModal";
 
 const GameBoard = () => {
   const level = new URLSearchParams(window.location.search).get("level");
@@ -63,6 +64,7 @@ const GameBoard = () => {
   const [matchedCards, setMatchedCards] = useState([]);
   const [totalFlips, setTotalFlips] = useState(0);
   const [bestScore, setBestScore] = useBestScore({ level });
+  const [gameover, setGameOver] = useState(false);
 
   useEffect(() => {
     setCards(createBoard());
@@ -115,6 +117,7 @@ const GameBoard = () => {
     setTotalFlips(_totalFlips);
     const flippedCardsCount = cards.filter((card) => card.isFlipped).length;
     if (cards.length == flippedCardsCount) {
+      setGameOver(true);
       setBestScore(_totalFlips);
     }
   };
@@ -137,25 +140,30 @@ const GameBoard = () => {
 
   return (
     <div>
-    <ScoreBoard totalMoves={totalFlips} bestScore={bestScore} />
-    <div className={"Cards-"+level}>
-      {cards.map((card) => (
-        <Card
-          key={card.id}
-          id={card.id}
-          isFlipped={card.isFlipped}
+      <ScoreBoard totalMoves={totalFlips} bestScore={bestScore} />
+      <div className={"Cards-" + level}>
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            isFlipped={card.isFlipped}
+            //for style-colour
 
-        //for style-colour
-      
-          isMatched={card.isMatched}
-
-          image={card.image}
-          onClick={handleCardClick}
-          level={level}
+            isMatched={card.isMatched}
+            image={card.image}
+            onClick={handleCardClick}
+            level={level}
+          />
+        ))}
+      </div>
+      <div>
+        <EndGameMessageModal
+          totalMoves={totalFlips}
+          bestScore={bestScore}
+          isOpen={gameover}
         />
-      ))}
+      </div>
     </div>
-</div>
   );
 };
 

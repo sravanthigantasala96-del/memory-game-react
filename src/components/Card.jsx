@@ -1,11 +1,13 @@
-import ReactCardFlip from 'react-card-flip';
+import ReactCardFlip from "react-card-flip";
 
 const Card = ({ id, isFlipped, isMatched, onClick, image, level }) => {
   return (
-    <ReactCardFlip isFlipped={isFlipped || isMatched} flipDirection="horizontal">
-
-    {/* FRONT SIDE */}
-      <div 
+    <ReactCardFlip
+      isFlipped={isFlipped || isMatched}
+      flipDirection="horizontal"
+    >
+      {/* FRONT SIDE */}
+      <div
         className={`frontCard-${level} ${isMatched ? "matched" : ""}`}
         onClick={() => onClick(id)}
       />
@@ -16,10 +18,8 @@ const Card = ({ id, isFlipped, isMatched, onClick, image, level }) => {
         onClick={() => onClick(id)}
       /> */}
 
-       {/* BACK SIDE */}
-      <div 
-        className={`backCard ${isMatched ? "matched" : ""}`}
-      >
+      {/* BACK SIDE */}
+      <div className={`backCard ${isMatched ? "matched" : ""}`}>
         <img src={image} alt="card" />
       </div>
 
@@ -38,5 +38,3 @@ const Card = ({ id, isFlipped, isMatched, onClick, image, level }) => {
 };
 
 export default Card;
-
-
