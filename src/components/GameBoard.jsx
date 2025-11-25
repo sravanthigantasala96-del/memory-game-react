@@ -147,7 +147,7 @@ const GameBoard = () => {
   };
 
   return (
-    <div>
+    <div className="game-container">
       <ScoreBoard totalMoves={totalFlips} bestScore={bestScore} />
       <div className={"Cards-" + level}>
         {cards.map((card) => (
@@ -164,6 +164,12 @@ const GameBoard = () => {
           />
         ))}
       </div>
+      <button
+        className="homeButton"
+        onClick={() => (window.location.href = "/")}
+      >
+        Home
+      </button>
       <div>
         <EndGameMessageModal
           totalMoves={totalFlips}
