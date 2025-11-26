@@ -1,4 +1,5 @@
 import React from "react";
+import "./ScoreBoard.css"; 
 
 function ScoreBoard({ totalMoves, bestScore, stars, seconds }) {
   // Format seconds to MM:SS

@@ -192,6 +192,7 @@ useEffect(() => {
   totalMoves={totalFlips}
   bestScore={bestScore}
   stars={stars}
+/>
   seconds={seconds}
 />
 
@@ -218,11 +219,12 @@ useEffect(() => {
       </button>
       <div>
         <EndGameMessageModal
-          totalMoves={totalFlips}
-          bestScore={bestScore}
-          isOpen={gameover}
-          onRestart={restartGame}
-        />
+  totalMoves={totalFlips}
+  bestScore={bestScore}
+  stars={stars}
+  isOpen={gameover}
+  onRestart={restartGame}
+/>
       </div>
     </div>
   );
