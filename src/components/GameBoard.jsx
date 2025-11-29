@@ -16,7 +16,9 @@ import unicorn from "../assets/cardImages/unicorn.png";
 import ScoreBoard from "./ScoreBoard";
 import useBestScore from "./useBestScore";
 import EndGameMessageModal from "./EndGameMessageModal";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+
 
 const GameBoard = () => {
   // const level = new URLSearchParams(window.location.search).get("level");
