@@ -5,12 +5,12 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
 export default function AlertDialog(props) {
   const { isOpen, totalMoves, bestScore, onRestart, stars } = props;
-  <Link to="/">Home</Link>;
+  <Link to="/Memory-game">Home</Link>;
   return (
     <React.Fragment>
       <Dialog
@@ -33,7 +33,7 @@ export default function AlertDialog(props) {
   </DialogContentText>
 </DialogContent>
         <DialogActions>
-          <Button variant="outlined" component={Link} to="/">
+          <Button variant="outlined" component={Link} to="/Memory-game">
             Home
           </Button>
           <Button variant="outlined" onClick={onRestart}>
