@@ -1,5 +1,4 @@
 import React from "react";
-import "./ScoreBoard.css"; 
 
 function ScoreBoard({ totalMoves, bestScore, stars, seconds }) {
   // Format seconds to MM:SS
@@ -12,7 +11,7 @@ function ScoreBoard({ totalMoves, bestScore, stars, seconds }) {
         {stars.map((star, index) => (
           <span
             key={index}
-            className={`star ${star === 1 ? "full" : "empty"}`}
+            className={`star-icon ${star === 1 ? "full" : "empty"}`} // Added star-icon class
           >
             ⭐
           </span>
@@ -21,7 +20,8 @@ function ScoreBoard({ totalMoves, bestScore, stars, seconds }) {
 
       <p className="score-text">Moves: <span>{totalMoves}</span></p>
       <p className="score-text">Time: <span>{timeFormatted}</span></p>
-      <p className="score-text">Best score: {bestScore === Infinity ? "∞" : bestScore}</p>
+      {/* Changed Best score text for better alignment in a flex container */}
+      <p className="score-text">Best score: <span>{bestScore === Infinity ? "-" : bestScore}</span></p>
     </div>
   );
 }

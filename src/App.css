@@ -109,7 +109,7 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 350px; /* Reduced max-width for better responsiveness */
   margin: 0 auto;
 }
 .Cards-medium {
@@ -117,7 +117,7 @@ footer {
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 450px; /* Reduced max-width for better responsiveness */
   margin: 0 auto;
 }
 .Cards-hard {
@@ -125,20 +125,79 @@ footer {
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 550px; /* Reduced max-width for better responsiveness */
   margin: 0 auto;
 }
 
 .game-container {
-  width:100vw;
-  height:100vh;
+  width: 100%; /* Changed from 100vw */
+  min-height: 100vh; /* Changed from 100vh */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 20px;
 }
-.score-info {
+
+/* ===========================
+   ScoreBoard Styling
+   =========================== */
+
+/* Remove the old .score-info and use .scoreboard-container */
+.scoreboard-container {
+  width: 100%;
+  max-width: 400px; /* Max width for larger screens */
+  background-color: #0e2544; /* Matching homeButton background */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #202f4a; /* Matching homeButton border/theme */
+  border-radius: 10px;
+  padding: 15px 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  font-size: 1.1rem;
+}
+
+.stars {
+  display: flex;
+  gap: 5px;
+  order: -1; /* Place stars at the beginning */
+  width: 100%; /* Takes full width on small screens */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.score-text {
+  font-weight: bold;
+  /* Use flex-basis to control how much space each score item takes */
+  flex-basis: 30%; /* Three items roughly fit in a row */
+  text-align: center;
+  font-size: 0.95rem; /* Slightly smaller for compactness */
+  min-width: fit-content; /* Prevent score text from becoming too narrow */
+}
+
+/* Style for the actual score numbers/time */
+.score-text span {
+  display: block; /* Stack the number/time below the label */
+  font-weight: normal;
+  font-size: 1.1rem;
+  margin-top: 3px;
+  color: #00eaff; /* Accent color for the scores */
+}
+
+/* Star color override to remove yellow */
+.star-icon.full {
+  color: #00eaff; /* Bright matching color */
+  font-size: 1.5rem;
+}
+
+.star-icon.empty {
+  opacity: 0.3; /* Dim the empty stars */
+  font-size: 1.5rem;
+}
+
+/* Remove old score-info style */
+/* .score-info {
   width: 350px;
   height: 100px;
   background-color: #0e2544;
@@ -148,8 +207,12 @@ footer {
   border: 2px solid #202f4a;
   border-radius: 10px;
   padding: 20px;
-}
+} */
 
+
+/* ===========================
+   Card Styles (No Change)
+   =========================== */
 .frontCard-easy {
   background-color: #3b8d54;
   width: 100px;
@@ -190,63 +253,6 @@ img {
   border-radius: 8px;
 }
 
-
-/*
-.matched {
-  background-color: #38BDF8;
-  border-color: #0EA5E9;
-  box-shadow: 0 0 12px #38BDF8;
-  transform: scale(1.06);
-  transition: 0.3s ease-in-out;
-}
-*/
-
-
-/* for rainbow theme
-
-.matched {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-*/ 
-/* Animated colorful border */
-/*
-.matched::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 12px;
-  padding: 3px;
-  background: linear-gradient(
-    120deg,
-    #ff0077,
-    #ffae00,
-    #00eaff,
-    #8a2be2,
-    #ff0077
-  );
-  background-size: 300% 300%;
-  animation: rainbowGlow 3s ease infinite;
-  z-index: -1;
-}
-
-.matched img,
-.matched div {
-  position: relative;
-  z-index: 1;
-}
-
-*/
-/* Smooth rainbow animation 
-@keyframes rainbowGlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}                  
-end of rainbow theme*/
-
-
 .matched {
   border: 6px solid transparent;   /* Increased thickness */
   border-radius: 14px;             /* Slightly rounder corners */
@@ -266,8 +272,9 @@ end of rainbow theme*/
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
+}
 
-  /* ===========================
+/* ===========================
    Mobile (Small Phones)
    =========================== */
 @media (max-width: 480px) {
@@ -276,11 +283,27 @@ end of rainbow theme*/
     gap: 15px;
   }
 
-  .score-info {
-    width: 90%;
-    height: auto;
-    padding: 15px;
+  .scoreboard-container {
+    width: 95%; /* Increased width for small screens */
+    padding: 10px 15px;
     font-size: 0.9rem;
+    max-width: none; /* Allow full width when needed */
+  }
+
+  /* Adjustments for score items when wrapping */
+  .score-text {
+    flex-basis: 100%; /* Force each score item to its own line */
+    margin: 5px 0;
+  }
+  .score-text span {
+    display: inline; /* Display inline on small screens for brevity */
+    margin-left: 5px;
+  }
+  .stars {
+    margin-bottom: 5px;
+  }
+  .star-icon.full, .star-icon.empty {
+    font-size: 1.3rem;
   }
 
   .homeButton {
@@ -294,24 +317,21 @@ end of rainbow theme*/
   .frontCard-medium,
   .frontCard-hard,
   .backCard {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
   }
 
-  /* Grid adjustments */
+  /* Grid adjustments - max-width ensures center alignment */
   .Cards-easy {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 300px;
+    max-width: 250px;
   }
 
   .Cards-medium {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 350px;
+    max-width: 300px;
   }
 
   .Cards-hard {
-    grid-template-columns: repeat(5, 1fr);
-    max-width: 350px;
+    max-width: 320px;
   }
 
   img {
@@ -325,8 +345,12 @@ end of rainbow theme*/
    Tablets & Large Phones
    =========================== */
 @media (max-width: 768px) {
-  .score-info {
-    width: 80%;
+  .scoreboard-container {
+    width: 90%;
+    max-width: 400px;
+  }
+  .score-text {
+    flex-basis: 32%; /* Keep them on one line */
   }
 
   .homeButton {
@@ -337,12 +361,18 @@ end of rainbow theme*/
   .frontCard-medium,
   .frontCard-hard,
   .backCard {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
   }
 
+  .Cards-easy {
+    max-width: 300px;
+  }
+  .Cards-medium {
+    max-width: 380px;
+  }
   .Cards-hard {
-    max-width: 450px;
+    max-width: 420px;
   }
 }
 
@@ -351,11 +381,6 @@ end of rainbow theme*/
    =========================== */
 @media (max-width: 1024px) {
   .Cards-hard {
-    max-width: 550px;
+    max-width: 500px;
   }
 }
-
-}
-
-
-
