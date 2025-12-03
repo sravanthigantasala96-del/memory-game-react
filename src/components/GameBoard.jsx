@@ -14,7 +14,7 @@ import phoenix from "../assets/cardImages/phoenix.png";
 import toucan from "../assets/cardImages/toucan.png";
 import unicorn from "../assets/cardImages/unicorn.png";
 import ScoreBoard from "./ScoreBoard";
-import useBestScore from "./useBestScore";
+import useBestScore from "../hooks/useBestScore";
 import EndGameMessageModal from "./EndGameMessageModal";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
