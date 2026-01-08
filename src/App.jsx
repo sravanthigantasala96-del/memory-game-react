@@ -7,10 +7,10 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/memory-game-react">
         <Routes>
-            <Route path='/Memory-game' element={<Home />}/>
-            <Route path='/Memory-game/:level' element={<Game />}/>
+            <Route path='/' element={<Home />}/>
+            <Route path='/game/:level' element={<Game />}/>
             <Route path='*' element={<NotFound />}/>
         </Routes>
       </BrowserRouter>    
