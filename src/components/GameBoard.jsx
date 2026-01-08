@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Card from "./Card";
+import NotFound from "../pages/NotFound";
 
 // Import all card images
 import butterfly from "../assets/cardImages/butterfly.png";
@@ -13,11 +14,22 @@ import phoenix from "../assets/cardImages/phoenix.png";
 import toucan from "../assets/cardImages/toucan.png";
 import unicorn from "../assets/cardImages/unicorn.png";
 import ScoreBoard from "./ScoreBoard";
-import useBestScore from "./useBestScore";
+import useBestScore from "../hooks/useBestScore";
 import EndGameMessageModal from "./EndGameMessageModal";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+
 
 const GameBoard = () => {
-  const level = new URLSearchParams(window.location.search).get("level");
+  // const level = new URLSearchParams(window.location.search).get("level");
+
+  const navigate = useNavigate();
+  const { level } = useParams();
+  let validLevels = ["easy", "medium", "hard"];
+
+  if(!validLevels.includes(level)){
+      return <NotFound />;
+  }
   const cardImages = [
     butterfly,
     dove,
@@ -213,7 +225,7 @@ useEffect(() => {
       </div>
       <button
         className="homeButton"
-        onClick={() => (window.location.href = "/")}
+        onClick={() => navigate('/Memory-game')}
       >
         Home
       </button>
