@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sravanthigantasala96-del.github.io/Memory-game",
+  "homepage": "https://sravanthigantasala96-del.github.io/memory-game-react",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "start": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --repo https://github.com/sravanthigantasala96-del/Memory-game.git"
+    "deploy": "gh-pages -d dist --repo https://github.com/sravanthigantasala96-del/memory-game-react.git"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
